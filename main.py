@@ -70,13 +70,13 @@ async def on_ready():
     #await bot.tree.clear_commands(guild=)
 
     try:
-        synced = await bot.tree.sync(guild=guild)
+        synced = await bot.tree.sync() #guild=guild for spesific server
         print(f"Synced total of {len(synced)} commands")
     except Exception as e:
         print(f"Error: {e}")
 
 #COMMANDS-----------------------------------------------------------------------------------------
-@bot.tree.command(name="setup", description="Setup the bot", guild=guild)
+@bot.tree.command(name="setup", description="Setup the bot")
 @app_commands.describe(report_channel="Choose the channel where i send the security reports")
 async def setup(interaction: discord.Interaction, report_channel: discord.TextChannel):
     await interaction.response.defer(thinking=True)
@@ -142,7 +142,7 @@ async def setup(interaction: discord.Interaction, report_channel: discord.TextCh
     await interaction.followup.send("Setup successful!")
 
 #Quarantine
-@bot.tree.command(name="quarantine", description="Set user/bot into quarantine", guild=guild)
+@bot.tree.command(name="quarantine", description="Set user/bot into quarantine")
 @app_commands.describe(target="User/Bot to be set into quarantine")
 async def quarantine(interaction: discord.Interaction, target: discord.Member):
     await interaction.response.defer(thinking=True)
@@ -249,7 +249,7 @@ async def quarantine(interaction: discord.Interaction, target: discord.Member):
         await interaction.followup.send(f":warning: Error {e} occured while attempting to set {target.name} to quarantine! :warning:", ephemeral=True)
 
 #Release from quarantine
-@bot.tree.command(name="release", description="Releases user/bot from quarantine", guild=guild)
+@bot.tree.command(name="release", description="Releases user/bot from quarantine")
 @app_commands.describe(target="User/Bot to be released from quarantine")
 async def release(interaction: discord.Interaction, target: discord.Member):
     #Is the bot configurated?
@@ -302,7 +302,8 @@ async def release(interaction: discord.Interaction, target: discord.Member):
         await interaction.response.send_message(f":warning: Error {e} occured while attempting to release {target.name} from quarantine! :warning:", ephemeral=True)   
 
 #Verify
-@bot.tree.command(name="verifybot", description="Verifies bot", guild=guild)
+
+@bot.tree.command(name="verifybot", description="Verifies bot")
 @app_commands.describe(target="Bot to be verified")
 async def verifybot(interaction: discord.Interaction, target: discord.Member):
     #Is the bot configurated?
@@ -349,7 +350,7 @@ async def verifybot(interaction: discord.Interaction, target: discord.Member):
 
 
 #Info
-@bot.tree.command(name="info", description="Info about the bot", guild=guild)
+@bot.tree.command(name="info", description="Info about the bot")
 async def info(interaction: discord.Interaction):
     await interaction.response.send_message(
         f"### AntiRN - info\n"
@@ -361,7 +362,7 @@ async def info(interaction: discord.Interaction):
     )
 
 #Help
-@bot.tree.command(name="help", description="View all avaible commands", guild=guild)
+@bot.tree.command(name="help", description="View all avaible commands")
 async def help(interaction: discord.Interaction):
     commands = bot.tree.get_commands(guild=guild)
     help_text = "### Avaible commands\n"
