@@ -1,0 +1,51 @@
+## Usage
+
+### Installation
+
+1. Download the source code
+2. Install following depencies:
+```
+discord.py
+python-dotenv
+```
+   with 
+```
+pip install discord.py python-dotenv
+```
+
+### Configuring
+
+1. Inside configuration folder, rename following files
+```
+defaultconv.env
+defaultmain.db
+```
+   to
+```
+conv.env
+main.db
+```
+2. Open `conv.env` and configure each field with values of your liking.
+
+## Modifying
+
+### Custom modules! 
+
+AntiNR is coded with modularity on mind. Put your custom core modules to `internal/core` and secondary modules (protocols) to `internal/protocols`.
+You can use this template on each new module .py file you create to those directories:
+```
+from discord.ext import commands
+import discord
+
+class NewModule(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+    
+    @commands.Cog.listener()
+    #Example - add your own listeners
+    async def on_guild_join(self, guild: discord.Guild):
+        print("hello!")
+
+async def setup(bot):
+    await bot.add_cog(NewModule(bot))
+```
