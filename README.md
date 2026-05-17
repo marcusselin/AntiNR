@@ -17,8 +17,8 @@ pip install discord.py python-dotenv
 
 1. Inside configuration folder, rename following files
 ```
-defaultconv.env
-defaultmain.db
+defconv.env
+defmain.db
 ```
    to
 ```
