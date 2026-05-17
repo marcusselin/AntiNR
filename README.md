@@ -15,7 +15,7 @@ pip install discord.py python-dotenv
 
 ### Configuring
 
-Open `configuration/conv.env`, add your discord bot token and configure other fields with values of your liking.
+Open `configuration/conf.env`, add your discord bot token and configure other fields with values of your liking.
 
 ## Modifying
 
