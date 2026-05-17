@@ -50,4 +50,4 @@ async def setup(bot):
     await bot.add_cog(NewModule(bot))
 ```
 ### Secure configuration base!
-Put your custom configuration to your `conf.env` file in `configuration`, and load them using `os.getenv(env_var_name)`.
+Put your custom configuration to your `conf.env` file in `configuration`, and load them using `os.getenv(var_name)`.
